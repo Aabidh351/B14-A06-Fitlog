@@ -1,5 +1,6 @@
 import { getWorkouts } from "@/app/lib/api";
 import WorkoutCard from "./WorkoutCard";
+import { Workout } from "../types/workout";
 
 const Library = async () => {
   const workouts = await getWorkouts();
@@ -18,9 +19,8 @@ const Library = async () => {
         </p>
       </div>
 
-      {/* Cards */}
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {workouts.map((workout) => (
+        {workouts.map((workout: Workout) => (
           <WorkoutCard
             key={workout.id}
             workout={workout}

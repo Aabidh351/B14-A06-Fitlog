@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Oswald } from "next/font/google";
 import { getWorkout } from "@/app/lib/api";
 import WorkoutActions from "@/app/components/WorkoutActions";
+import { Workout } from "@/app/types/workout";
 
 const oswald = Oswald({
   subsets: ["latin"],
@@ -16,7 +17,7 @@ interface WorkoutDetailsProps {
 
 const WorkoutDetails = async ({ params }: WorkoutDetailsProps) => {
   const { id } = await params;
-  const workout = await getWorkout(Number(id));
+  const workout:Workout = await getWorkout(Number(id));
 
   return (
     <main className="min-h-screen bg-[#0b0c0e]">
@@ -47,7 +48,7 @@ const WorkoutDetails = async ({ params }: WorkoutDetailsProps) => {
             </p>
 
             <div className="mt-5 flex flex-wrap gap-2">
-              {workout.muscleGroups.map((muscle) => (
+              {workout.muscleGroups.map((muscle:string) => (
                 <span
                   key={muscle}
                   className="rounded-full bg-[#baff00] px-3 py-1 text-[10px] font-bold uppercase text-black"
@@ -130,7 +131,7 @@ const WorkoutDetails = async ({ params }: WorkoutDetailsProps) => {
               </h2>
 
               <ol className="mt-4 space-y-3">
-                {workout.instructions.map((instruction, index) => (
+                {workout.instructions.map((instruction:string, index:number) => (
                   <li
                     key={instruction}
                     className="flex gap-3 text-sm leading-6 text-[#969ba5]"
