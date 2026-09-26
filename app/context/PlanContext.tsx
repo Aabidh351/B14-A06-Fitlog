@@ -9,6 +9,7 @@ interface PlanContextType {
   savedWorkouts: Workout[];
 
   addToPlan: (workout: Workout) => void;
+  markAsDone: (id: number) => void;
   removeFromPlan: (id: number) => void;
 
   saveForLater: (workout: Workout) => void;
@@ -48,7 +49,13 @@ export const PlanProvider = ({ children }: PlanProviderProps) => {
 
     toast.success("Removed from today's plan");
   };
+    const markAsDone = (id: number) => {
+    setTodayPlan((current) =>
+      current.filter((workout) => workout.id !== id)
+    );
 
+    toast.success("Marked as Done!");
+  };
   const saveForLater = (workout: Workout) => {
     if (savedWorkouts.some((item) => item.id === workout.id)) {
       toast.error("Workout is already saved");
@@ -75,6 +82,7 @@ export const PlanProvider = ({ children }: PlanProviderProps) => {
         savedWorkouts,
         addToPlan,
         removeFromPlan,
+        markAsDone,
         saveForLater,
         removeFromSaved,
       }}

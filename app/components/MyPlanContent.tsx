@@ -24,6 +24,7 @@ const MyPlanContent = ({
     todayPlan,
     savedWorkouts,
     removeFromPlan,
+    markAsDone,
     removeFromSaved,
   } = usePlan();
 
@@ -56,7 +57,7 @@ const MyPlanContent = ({
 
   return (
     <main className="min-h-screen bg-[#0b0c0e]">
-      <section className="mx-auto w-full max-w-[1400px] px-4 py-10 sm:px-6 lg:py-14">
+      <section className="mx-auto w-full max-w-350 px-4 py-10 sm:px-6 lg:py-14">
 
         <div>
           <h1 className="text-4xl font-bold uppercase leading-none text-white sm:text-5xl">
@@ -205,17 +206,17 @@ const MyPlanContent = ({
                 <div className="flex flex-wrap gap-2 sm:justify-end">
                   <Link
                     href={`/workouts/${workout.id}`}
-                    className="rounded-md border border-[#353941] px-4 py-2 text-xs text-white transition hover:border-[#666b75]"
+                    className="rounded-full border border-[#353941] px-4 py-2 text-xs text-white transition hover:border-[#baff00]"
                   >
                     View Details
                   </Link>
 
                   {activeTab === "plan" && (
                     <button
-                      onClick={() => removeFromPlan(workout.id)}
-                      className="rounded-md border border-[#353941] px-4 py-2 text-xs text-white transition hover:border-[#666b75]"
+                      onClick={() => markAsDone(workout.id)}
+                      className="rounded-full bg-[#baff00] border border-[#353941] px-4 py-2 text-xs text-black transition hover:text[#baff00] hover:bg-[#18230d] hover:text-[#baff00]"
                     >
-                      Mark as Done
+                      ✓ Mark as Done
                     </button>
                   )}
 
@@ -225,7 +226,7 @@ const MyPlanContent = ({
                         ? removeFromPlan(workout.id)
                         : removeFromSaved(workout.id)
                     }
-                    className="rounded-md border border-[#353941] px-4 py-2 text-xs text-[#969ba5] transition hover:border-[#666b75] hover:text-white"
+                    className="px-4 py-2 text-xs text-[#969ba5] transition hover:text-[#baff00]"
                   >
                     X
                   </button>
