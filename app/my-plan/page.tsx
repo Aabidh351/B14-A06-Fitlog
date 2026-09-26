@@ -1,7 +1,10 @@
 import MyPlan from "@/app/components/MyPlan";
+import { getWorkouts } from "../lib/api";
 
 const MyPlanPage = () => {
-  return <MyPlan />;
+  const workoutsPromise = getWorkouts();
+
+  return <MyPlan workoutsPromise={workoutsPromise} />;
 };
 
 export default MyPlanPage;
