@@ -5,8 +5,11 @@ import Link from "next/link";
 import { useState } from "react";
 import { usePlan } from "@/app/context/PlanContext";
 
+type SortOption = "duration" | "calories" | "rating";
+
 const MyPlan = () => {
   const [activeTab, setActiveTab] = useState<"plan" | "saved">("plan");
+  const [sortBy, setSortBy] = useState<SortOption>("duration");
 
   const {
     todayPlan,
@@ -15,14 +18,29 @@ const MyPlan = () => {
     removeFromSaved,
   } = usePlan();
 
-  const workouts = activeTab === "plan" ? todayPlan : savedWorkouts;
+  const currentWorkouts =
+    activeTab === "plan" ? todayPlan : savedWorkouts;
 
-  const minutes = todayPlan.reduce(
+  const workouts = [...currentWorkouts].sort((a, b) => {
+    if (sortBy === "duration") {
+      return b.duration - a.duration;
+    }
+
+    if (sortBy === "calories") {
+      return b.caloriesBurned - a.caloriesBurned;
+    }
+
+    return b.rating - a.rating;
+  });
+
+  const exercises = currentWorkouts.length;
+
+  const minutes = currentWorkouts.reduce(
     (total, workout) => total + workout.duration,
     0
   );
 
-  const calories = todayPlan.reduce(
+  const calories = currentWorkouts.reduce(
     (total, workout) => total + workout.caloriesBurned,
     0
   );
@@ -42,13 +60,14 @@ const MyPlan = () => {
         </div>
 
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+
           <div className="rounded-xl border border-[#252931] bg-[#15171c] p-5">
             <p className="text-xs uppercase text-[#969ba5]">
               Exercises
             </p>
 
             <p className="mt-2 text-3xl font-bold text-white">
-              {todayPlan.length}
+              {exercises}
             </p>
           </div>
 
@@ -71,32 +90,63 @@ const MyPlan = () => {
               {calories}
             </p>
           </div>
+
         </div>
 
-        <div className="mt-8 flex gap-2 border-b border-[#252931]">
-          <button
-            onClick={() => setActiveTab("plan")}
-            className={`px-4 py-3 text-xs font-bold uppercase ${
-              activeTab === "plan"
-                ? "border-b-2 border-[#baff00] text-[#baff00]"
-                : "text-[#969ba5]"
-            }`}
-          >
-            Today&apos;s Plan
-          </button>
+        <div className="mt-8 flex flex-col gap-4 border-b border-[#252931] sm:flex-row sm:items-center sm:justify-between">
 
-          <button
-            onClick={() => setActiveTab("saved")}
-            className={`px-4 py-3 text-xs font-bold uppercase ${
-              activeTab === "saved"
-                ? "border-b-2 border-[#baff00] text-[#baff00]"
-                : "text-[#969ba5]"
-            }`}
-          >
-            Saved
-          </button>
+          <div className="flex gap-2">
+            <button
+              onClick={() => setActiveTab("plan")}
+              className={`px-4 py-3 text-xs font-bold uppercase ${
+                activeTab === "plan"
+                  ? "border-b-2 border-[#baff00] text-[#baff00]"
+                  : "text-[#969ba5]"
+              }`}
+            >
+              Today&apos;s Plan
+            </button>
+
+            <button
+              onClick={() => setActiveTab("saved")}
+              className={`px-4 py-3 text-xs font-bold uppercase ${
+                activeTab === "saved"
+                  ? "border-b-2 border-[#baff00] text-[#baff00]"
+                  : "text-[#969ba5]"
+              }`}
+            >
+              Saved
+            </button>
+          </div>
+
+          {/* Sort By */}
+          <div className="relative flex items-center gap-2 pb-3 sm:pb-2">
+            <span className="text-xs uppercase text-[#969ba5]">
+              Sort By
+            </span>
+
+            <div className="relative">
+              <select
+                value={sortBy}
+                onChange={(event) =>
+                  setSortBy(event.target.value as SortOption)
+                }
+                className="appearance-none rounded-md border border-[#353941] bg-[#15171c] py-2 pl-3 pr-8 text-xs text-white outline-none"
+              >
+                <option value="duration">Duration</option>
+                <option value="calories">Calories</option>
+                <option value="rating">Rating</option>
+              </select>
+
+              <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-xs text-[#969ba5]">
+                ▼
+              </span>
+            </div>
+          </div>
+
         </div>
 
+        {/* Workout List */}
         <div className="mt-6 space-y-4">
           {workouts.length === 0 ? (
             <div className="py-16 text-center">
@@ -121,7 +171,6 @@ const MyPlan = () => {
                 key={workout.id}
                 className="flex flex-col gap-5 rounded-xl border border-[#252931] bg-[#15171c] p-4 sm:flex-row sm:items-center"
               >
-
                 <div className="relative h-48 w-full shrink-0 overflow-hidden rounded-lg sm:h-28 sm:w-40">
                   <Image
                     src={workout.image}
@@ -180,6 +229,7 @@ const MyPlan = () => {
             ))
           )}
         </div>
+
       </section>
     </main>
   );
