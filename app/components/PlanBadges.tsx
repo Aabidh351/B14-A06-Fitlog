@@ -1,11 +1,13 @@
 "use client";
 
 import { usePlan } from "@/app/context/PlanContext";
+import Link from "next/link";
 
 const PlanBadges = () => {
   const { todayPlan, savedWorkouts } = usePlan();
 
   return (
+    <Link href="/my-plan/">
     <div className="flex items-center gap-5">
       <span className="flex items-center gap-2 text-xs text-[#969ba5]">
         Plan
@@ -21,6 +23,7 @@ const PlanBadges = () => {
         </span>
       </span>
     </div>
+    </Link>
   );
 };
 
