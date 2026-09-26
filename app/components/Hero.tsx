@@ -1,6 +1,7 @@
 import Image from "next/image";
 import HeroImage from "@/public/banner.png";
 import { Oswald } from "next/font/google";
+import BrowseWorkoutButton from "@/app/components/BrowseWorkoutButton"
 
 const oswald = Oswald({
   subsets: ["latin"],
@@ -26,10 +27,9 @@ const Hero = () => {
     FitLog is a dark, no-nonsense gym companion: pick a lift, lock it
     into today&apos;s plan, and watch the week&apos;s work add up.
     </p>
-
-    <button className="mt-7 w-fit rounded-md bg-[#baff00] px-6 py-3 text-xs font-bold uppercase text-black transition hover:bg-[#c8ff33]">
-    Browse Workouts
-    </button>
+    
+    <BrowseWorkoutButton/>
+    
     </div>
 
         <div className="relative min-h-75 md:min-h-full">

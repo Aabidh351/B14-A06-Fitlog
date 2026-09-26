@@ -2,13 +2,16 @@ import { getWorkouts } from "@/app/lib/api";
 import WorkoutCard from "./WorkoutCard";
 import { Workout } from "../types/workout";
 
-const Library = async () => {
+interface LibraryProps {
+  id: string;
+}
+
+const Library = async ({ id }: LibraryProps) => {
   const workouts = await getWorkouts();
 
   return (
-    <section className="mx-auto w-full max-w-350 px-4 py-10 sm:px-6 lg:py-14">
+    <section id={id} className="mx-auto w-full max-w-350 px-4 py-10 sm:px-6 lg:py-14">
 
-      {/* Heading */}
       <div className="mb-7">
         <h2 className="text-3xl font-bold uppercase leading-none text-white sm:text-4xl">
           THE LIBRARY
