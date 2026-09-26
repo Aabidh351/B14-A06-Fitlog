@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Oswald } from "next/font/google";
 import { getWorkout } from "@/app/lib/api";
+import WorkoutActions from "@/app/components/WorkoutActions";
 
 const oswald = Oswald({
   subsets: ["latin"],
@@ -144,19 +145,7 @@ const WorkoutDetails = async ({ params }: WorkoutDetailsProps) => {
               </ol>
             </div>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-
-              <button className="flex items-center gap-2 rounded-md bg-[#baff00] px-5 py-3 text-xs font-bold text-black transition hover:bg-[#c8ff33]">
-                <span>▣</span>
-                Add to today&apos;s plan
-              </button>
-
-              <button className="flex items-center gap-2 rounded-md border border-[#353941] px-5 py-3 text-xs text-white transition hover:border-[#666b75]">
-                <span>♡</span>
-                Save for later
-              </button>
-
-            </div>
+            <WorkoutActions workout={workout} />
 
           </div>
         </div>

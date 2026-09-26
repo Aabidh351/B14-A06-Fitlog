@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "@/public/logo.png"
+import PlanBadges from "./PlanBadges";
 
 const Navbar = () => {
   return (
@@ -34,25 +35,7 @@ const Navbar = () => {
         </div>
 
 
-        <div className="flex items-center gap-3 text-xs sm:gap-5">
-
-          <div className="flex items-center gap-1.5 text-[#a3a6ad] sm:gap-2">
-            <span className="hidden sm:inline">Plan</span>
-
-            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#baff00] text-[10px] font-bold text-black">
-              0
-            </span>
-          </div>
-
-          <div className="flex items-center gap-1.5 text-[#a3a6ad] sm:gap-2">
-            <span className="hidden sm:inline">Saved</span>
-
-            <span className="flex h-5 w-5 items-center justify-center rounded-full border border-[#353941] text-[10px]">
-              0
-            </span>
-          </div>
-
-        </div>
+        <PlanBadges />
       </div>
     </nav>
   );
