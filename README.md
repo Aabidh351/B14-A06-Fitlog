@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FitLog
 
-## Getting Started
+FitLog is a modern workout library and planning web application that helps users discover exercises, build a daily workout plan, and save workouts for later. It provides detailed workout information including muscle groups, equipment, difficulty, duration, calories, sets, reps, and ratings.
 
-First, run the development server:
+## Technologies Used
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Next.js
+- TypeScript
+- React
+- Tailwind CSS
+- React Context API
+- React Hot Toast
+- REST API
+- LocalStorage
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Key Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# 1. Workout Library
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Browse a collection of workouts covering different muscle groups, equipment types, and difficulty levels.
 
-## Learn More
+# 2. Workout Details
 
-To learn more about Next.js, take a look at the following resources:
+View detailed information for each workout, including instructions, muscle groups, equipment, difficulty, sets, reps, duration, calories, and rating.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# 3. Daily Workout Plan
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Add workouts to today's plan with a maximum limit of five exercises. Users can view, complete, or remove exercises from their plan.
 
-## Deploy on Vercel
+# 4. Save Workouts for Later
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Save favorite workouts for later and access them from the Saved section of My Plan.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# 5. Search, Sort & Persistent Data
+
+Search workouts by name or muscle-group tag, sort planned workouts by duration, calories, or rating, and persist Plan/Saved data using LocalStorage so it remains available after a page reload.

@@ -68,8 +68,6 @@ const MyPlanContent = ({
           </p>
         </div>
 
-        {/* Metrics */}
-
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
           <div className="rounded-xl border border-[#252931] bg-[#15171c] p-5">
             <p className="text-xs uppercase text-[#969ba5]">
@@ -102,7 +100,6 @@ const MyPlanContent = ({
           </div>
         </div>
 
-        {/* Tabs + Sort */}
 
         <div className="mt-8 flex flex-col gap-4 border-b border-[#252931] sm:flex-row sm:items-center sm:justify-between">
 
@@ -154,8 +151,6 @@ const MyPlanContent = ({
             </div>
           </div>
         </div>
-
-        {/* Workout List */}
 
         <div className="mt-6 space-y-4">
           {sortedWorkouts.length === 0 ? (
